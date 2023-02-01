@@ -29,5 +29,39 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
+  if (prices.length === 1) {
+    return 0;
+  };
 
+  var left = prices[0];
+  var right = prices[1];
+  for (let i = 0; i < prices.length; i++) {
+    // if (prices[i+1] === undefined && left >= right) {
+    //   return 0
+    // }
+    if (prices[i] < left) {
+      left = prices[i];
+      if (prices[i+1] === undefined) {
+        return 0
+      }
+      right = prices[i+1]
+    }
+    if (right < left) {
+      left = right;
+    }
+    if (prices[i+1] > right) {
+      right =  prices[i+1];
+    }
+    // console.log(left, right)
+  }
+  if (right > left) {
+    return (right - left)
+  } else {
+    return 0;
+  }
 };
+
+console.log(maxProfit([7,1,5,3,6,4])) // should return 5
+console.log(maxProfit([7,6,4,3,1])) // should return 0
+console.log(maxProfit([2,1,2,1,0,1,2])) // should return 2
+console.log(maxProfit([7,6,4,3,1])) // should return 0

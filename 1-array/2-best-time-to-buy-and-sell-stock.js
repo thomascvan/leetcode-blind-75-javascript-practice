@@ -29,38 +29,21 @@
  * @return {number}
  */
 var maxProfit = function(prices) {
-  if (prices.length === 1) {
-    return 0;
-  };
+  var maxProfit = 0;
+  var buyPrice = prices[0];
+  var sellPrice = prices[1];
 
-  var left = prices[0];
-  var right = prices[1];
-  for (let i = 0; i < prices.length; i++) {
-    // if (prices[i+1] === undefined && left >= right) {
-    //   return 0
-    // }
-    if (prices[i] < left) {
-      left = prices[i];
-      if (prices[i+1] === undefined) {
-        return 0
-      }
-      right = prices[i+1]
+  for (let i = 1; i < prices.length; i++) {
+    if (prices[i] < buyPrice) {
+      buyPrice = prices[i];
+    } else if (prices[i] - buyPrice > maxProfit) {
+      maxProfit = prices[i] - buyPrice;
     }
-    if (right < left) {
-      left = right;
-    }
-    if (prices[i+1] > right) {
-      right =  prices[i+1];
-    }
-    // console.log(left, right)
   }
-  if (right > left) {
-    return (right - left)
-  } else {
-    return 0;
-  }
+  return maxProfit;
 };
 
+console.log('should return 0:', maxProfit([10]));
 console.log('should return 5:', maxProfit([7,1,5,3,6,4]));
 console.log('should return 0:', maxProfit([7,6,4,3,1]));
 console.log('should return 2:', maxProfit([2,1,2,1,0,1,2]));

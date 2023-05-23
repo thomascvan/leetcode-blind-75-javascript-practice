@@ -1,3 +1,6 @@
+// https://leetcode.com/problems/best-time-to-buy-and-sell-stock/
+// Difficulty: Easy
+
 // You are given an array prices where prices[i] is the price of a given stock on the ith day.
 
 // You want to maximize your profit by choosing a single day to buy one stock and choosing a different day in the future to sell that stock.
@@ -42,6 +45,13 @@ var maxProfit = function(prices) {
   }
   return maxProfit;
 };
+
+console.log('should return 0:', maxProfit([10]));
+console.log('should return 5:', maxProfit([7,1,5,3,6,4]));
+console.log('should return 0:', maxProfit([7,6,4,3,1]));
+console.log('should return 2:', maxProfit([2,1,2,1,0,1,2]));
+console.log('should return 0:', maxProfit([7,6,4,3,1]));
+console.log('should return 2:', maxProfit([2,4,1]));
 
 console.log('should return 0:', maxProfit([10]));
 console.log('should return 5:', maxProfit([7,1,5,3,6,4]));

@@ -41,3 +41,4 @@ var maxSubArray = function(nums) {
 console.log('should return 6:', maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
 console.log('should return 2:', maxSubArray([1]))
 console.log('should return 23:', maxSubArray([5,4,-1,7,8]))
+console.log('should return 3:', maxSubArray([1,2]))

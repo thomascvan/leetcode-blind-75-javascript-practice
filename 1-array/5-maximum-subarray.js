@@ -36,28 +36,19 @@
  */
 
 var maxSubArray = function(nums) {
-  if (nums.length === 0) return nums[0];
+  let maxSum = nums[0]; // Initialize maxSum with the first element
+  let currentSum = nums[0]; // Initialize currentSum with the first element
 
-  // keep track of sums
-  let maxSum = nums[0];
-  let accumulated = nums[0];
-
-  // go through each number
   for (let i = 1; i < nums.length; i++) {
-    // reset accumlated if next number is higher
-    if (nums[i] > accumulated && nums[i] > accumulated + nums[i]) {
-      accumulated = nums[i];
-    } else {
-      // if next number isn't higher, add to accumulator
-      accumulated += nums[i];
-    }
-    // reset max sum
-    if (accumulated > maxSum) {
-      maxSum = accumulated;
-    }
+    // Check if including the current element in the subarray gives a larger sum
+    // or starting a new subarray with the current element would be better
+    currentSum = Math.max(nums[i], currentSum + nums[i]);
+
+    // Update the maximum sum found so far
+    maxSum = Math.max(maxSum, currentSum);
   }
-    // return max sum after iterating through array.
-    return maxSum;
+
+  return maxSum;
 };
 
 console.log('should return 6:', maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))

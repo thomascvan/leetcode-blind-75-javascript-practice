@@ -34,10 +34,33 @@
  * @param {number[]} nums
  * @return {number}
  */
-var maxSubArray = function(nums) {
 
+var maxSubArray = function(nums) {
+  if (nums.length === 0) return nums[0];
+
+  // keep track of sums
+  let maxSum = -Infinity;
+  let accumulated = -Infinity;
+
+  // go through each number
+  for (num of nums) {
+    // reset accumlated if next number is higher
+    if (num > accumulated && num > accumulated + num) {
+      accumulated = num;
+    } else {
+      // if next number isn't higher, add to accumulator
+      accumulated += num;
+    }
+    // reset max sum
+    if (accumulated > maxSum) {
+      maxSum = accumulated;
+    }
+  }
+    // return max sum after iterating through array.
+    return maxSum;
 };
 
 console.log('should return 6:', maxSubArray([-2,1,-3,4,-1,2,1,-5,4]))
-console.log('should return 2:', maxSubArray([1]))
+console.log('should return 1:', maxSubArray([1]))
 console.log('should return 23:', maxSubArray([5,4,-1,7,8]))
+console.log('should return 3:', maxSubArray([1,2]))

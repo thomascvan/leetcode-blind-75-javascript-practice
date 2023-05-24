@@ -39,17 +39,17 @@ var maxSubArray = function(nums) {
   if (nums.length === 0) return nums[0];
 
   // keep track of sums
-  let maxSum = -Infinity;
-  let accumulated = -Infinity;
+  let maxSum = nums[0];
+  let accumulated = nums[0];
 
   // go through each number
-  for (num of nums) {
+  for (let i = 1; i < nums.length; i++) {
     // reset accumlated if next number is higher
-    if (num > accumulated && num > accumulated + num) {
-      accumulated = num;
+    if (nums[i] > accumulated && nums[i] > accumulated + nums[i]) {
+      accumulated = nums[i];
     } else {
       // if next number isn't higher, add to accumulator
-      accumulated += num;
+      accumulated += nums[i];
     }
     // reset max sum
     if (accumulated > maxSum) {
